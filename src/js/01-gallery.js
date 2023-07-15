@@ -1,8 +1,9 @@
 // Add imports above this line
-import { galleryItems } from './gallery-items.js';
-// Change code below this line
 import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
+import { galleryItems } from './gallery-items.js';
+// Change code below this line
+
 console.log(galleryItems);
 
 const galleryList = document.querySelector(".gallery");
@@ -10,10 +11,10 @@ const galleryMarkup = createGallaryMarkup(galleryItems);
 let instance;
 galleryList.insertAdjacentHTML("beforeend", galleryMarkup);
 
-// const lightbox = new SimpleLightbox(".gallery__link", {
-//  captionsData: "alt",
-//  captionDelay: 250,
-// });
+const lightbox = new SimpleLightbox(".gallery__link", {
+captionsData: "alt",
+captionDelay: 250,
+ });
 
 function createGallaryMarkup(galleryItems) {
   return galleryItems
@@ -30,15 +31,15 @@ function createGallaryMarkup(galleryItems) {
 }
 
 function openGallery(event) {
-  event.preventDefault();
-  if (!event.target.classList.contains("gallery__image")) {
+ event.preventDefault();
+ if (!event.target.classList.contains("gallery__image")) {
     return;
   }
 }
 
 galleryList.addEventListener("click", openGallery);
 
-//galleryList.addEventListener("keyup", closeGallery);
+galleryList.addEventListener("keyup", closeGallery);
 
 function closeGallery(event) {
   if(event.code === 'Escape') {
@@ -46,4 +47,3 @@ function closeGallery(event) {
     instance.close();
 }
 }
-
